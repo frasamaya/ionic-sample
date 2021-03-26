@@ -15,7 +15,13 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-card *ngFor="let p of image; let i = index">
+      <img src="{{ p.image }}" />
+      <ion-item>
+        <ion-label>{{ p.description }}</ion-label>
+        <ion-icon name="download-outline" slot="end" (click)="download(p.image)" *ngIf="!loading; else ShowTo"></ion-icon>
+        <ng-template slot="end" #ShowTo>Downloading</ng-template>
+      </ion-item>
+    </ion-card>
   </div>
 </ion-content>
